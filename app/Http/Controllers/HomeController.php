@@ -556,7 +556,7 @@ class HomeController extends Controller
         if (Auth::check()) {
             if (!empty($request->input('password') && strlen($request->input('password')) >= 6 && strlen($request->input('password')) <= 35)) {
                 DB::table('userlog')->insert(array('userid' => Auth::user()->id, 'action' => 'Neues Passwort gesetzt', 'timestamp' => time()));
-                DB::table('users')->where('id', Auth::user()->id)->update(['password' => Hash::make($request->input('password'))]);
+                DB::table('users')->where('id', Auth::user()->id)->update(['password' => Hash::make($request->input('password')."(8wgwWoRld136=")]);
                 return redirect::to('/home')->with('success', 'Passwort erfolgreich geändert!');
             } else {
                 return redirect::to('/home')->with('error', 'Ungültiges Passwort!');

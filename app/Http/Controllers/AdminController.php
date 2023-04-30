@@ -699,7 +699,7 @@ class AdminController extends Controller
         if (Auth::check()) {
             if ($this->checkAdminLogin()) {
                 if (Auth::user()->adminlevel <= FunctionsController::Kein_Admin) return redirect::to('/home')->with('error', 'Keine Berechtigung!');
-                $items = DB::table('globalitems')->where('id', 1)->limit(2500)->first(); //hier
+                $items = DB::table('globalitems')->where('id', 1)->limit(2500)->first();
 
                 $showitems = json_decode($items->json);
 
