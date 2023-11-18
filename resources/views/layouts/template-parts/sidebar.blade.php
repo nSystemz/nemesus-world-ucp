@@ -7,6 +7,7 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
             style="opacity: .8;color:white">
         <strong><span class="brand-text font-weight" style="font-family: 'Exo', sans-serif;">Nemesus World</span></strong>
     </a>
+    <span class="text-muted float-right" style="font-size: 10px">{{FunctionsController::getSideBarCP()}}</span></span>
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="info">
@@ -17,7 +18,6 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
                     @if (Auth::user()->selectedcharacter > -1)
                     <span class="text-muted" style="font-size: 12px">{{FunctionsController::getCharacterName(Auth::user()->selectedcharacterintern)}}</span></span>
                     @endif
-                    <span class="text-muted" style="font-size: 6px">{{FunctionsController::getSideBarCP()}}</span></span>
             </div>
         </div>
         <form class="form-horizontal" method="POST" action="{{ route('searchUser') }}">

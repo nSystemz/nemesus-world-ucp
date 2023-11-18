@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 //Routes
 
 //Default
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home2');
 
 //Auth routes like login
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'login'])->name('login');
@@ -24,7 +24,7 @@ Route::get('/passwordForget', [App\Http\Controllers\LoginController::class, 'pas
 Route::post('/resetPassword', [App\Http\Controllers\LoginController::class, 'resetPassword'])->name('resetPassword');
 
 //Home
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home3');
 
 //Character
 Route::get('/changeCharacter/{charid}', [App\Http\Controllers\HomeController::class, 'changeCharacter'])->name('changeCharacter');
