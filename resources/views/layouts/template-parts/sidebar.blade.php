@@ -17,6 +17,7 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
                     @if (Auth::user()->selectedcharacter > -1)
                     <span class="text-muted" style="font-size: 12px">{{FunctionsController::getCharacterName(Auth::user()->selectedcharacterintern)}}</span></span>
                     @endif
+                    <span class="text-muted" style="font-size: 6px">{{FunctionsController::getSideBarCP()}}</span></span>
             </div>
         </div>
         <form class="form-horizontal" method="POST" action="{{ route('searchUser') }}">

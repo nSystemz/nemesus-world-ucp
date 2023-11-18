@@ -109,8 +109,9 @@ class FunctionsController extends Controller
 
     public static function updateWBBGroups($user)
     {
-        try {
-            if(!$user || $user->forumaccount == -1) return false;
+        if(!$user)
+        {
+            if($user->forumaccount == -1) return false;
             $groups = "6"; //Verifiziert
             $removegroups = "-1"; //Gruppen zum löschen
             //Premium
@@ -184,8 +185,6 @@ class FunctionsController extends Controller
             $response2 = $client->get('HIER/forumConnect.php?id=9yeBgA33sVxRWkvXLmQv&status=settogroups&userid=' . $user->forumaccount . '&groupids='.$groups);
             DB::table('users')->where('id', $user->forumaccount)->update(['forumupdate' => time() + (60 * 25)]);
             return true;
-        } catch (\Exception) {
-            return false;
         }
     }
 
@@ -337,6 +336,11 @@ class FunctionsController extends Controller
         $rname = DB::table('groupsrangs')->where('groupsid', $group)->first()->$rangname;
         if (!$rname || $rname == null) return "Kein Rang";
         return $rname;
+    }
+
+    public static function getSideBarCP()
+    {
+        return "by Nemesus.de";
     }
 
     public static function getNameFromBank($banknumber)
@@ -493,28 +497,14 @@ class FunctionsController extends Controller
     public static function getFaction($type)
     {
         if (Auth::check()) {
-            try {
-                $charid = DB::table('characters')->where('userid', Auth::user()->id)->skip(Auth::user()->selectedcharacter)->orderby('id', 'asc')->first()->id;
-                $characters = DB::table('characters')->where('id', $charid)->first();
-                if ($type == 'faction') {
-                    $return = $characters->faction;
-                } else if ($type == 'rang') {
-                    $return = $characters->rang;
-                }
-                return $return;
-            } catch (\Exception) {
-                session()->flash('error', 'Bitte erstell dir zuerst einen Charakter!');
-                session()->forget('nemesusworlducp_adminlogin');
-                session()->forget('nemesusworlducp_failedadminlogin');
-                session()->forget('nemesusworlducp_lasttry');
-                session()->forget('google2fa');
-                session()->forget('nemesusworlducp_code');
-                session()->forget('nemesusworlducp_codetime');
-                session()->forget('nemesusworlducp_codeid');
-                session()->forget('nemesusworlducp_codeforumaccount');
-                Auth::logout();
-                return;
+            $charid = DB::table('characters')->where('userid', Auth::user()->id)->skip(Auth::user()->selectedcharacter)->orderby('id', 'asc')->first()->id;
+            $characters = DB::table('characters')->where('id', $charid)->first();
+            if ($type == 'faction') {
+                $return = $characters->faction;
+            } else if ($type == 'rang') {
+                $return = $characters->rang;
             }
+            return $return;
         }
     }
 
