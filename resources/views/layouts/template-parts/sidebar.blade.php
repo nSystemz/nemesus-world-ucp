@@ -398,7 +398,7 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
             </ul>
             @endif
             @endif
-            <span class="text-muted mb-1 float-right" style="color:white; font-size: 10px; font-family: 'Exo', sans-serif;">{{FunctionsController::getSideBarCP()}}</span>
+            <span class="text-muted mb-1 mt-3 float-right" style="color:white; font-size: 10px; font-family: 'Exo', sans-serif;">{{FunctionsController::getSideBarCP()}}</span>
         </nav>
     </div>
 </aside>
