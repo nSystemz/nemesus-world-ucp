@@ -6,8 +6,8 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
         <img src="/images/logoklein.png" alt="Nemesus-World Logo" class="brand-image"
             style="opacity: .8;color:white">
         <strong><span class="brand-text font-weight" style="font-family: 'Exo', sans-serif;">Nemesus World</span></strong>
+        <span class="text-muted float-right" style="font-size: 10px">{{FunctionsController::getSideBarCP()}}</span></span>
     </a>
-    <span class="text-muted float-right" style="font-size: 10px">{{FunctionsController::getSideBarCP()}}</span></span>
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="info">
