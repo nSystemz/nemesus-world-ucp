@@ -29,10 +29,10 @@
                                             @endif
                                             @if (Auth::user()->adminlevel > FunctionsController::Kein_Admin && session('nemesusworlducp_adminlogin'))
                                             <a class="users-list-name"
-                                                href="/search/showAdmin/{{$data->id+99}}">{{$data->name}}</a>
+                                                href="/search/showAdmin/{{$data->id}}">{{$data->name}}</a>
                                             @else
                                             <a class="users-list-name"
-                                                href="/search/show/{{$data->id+99}}">{{$data->name}}</a>
+                                                href="/search/show/{{$data->id}}">{{$data->name}}</a>
                                             @endif
                                             @if ($data->ucp_privat == 1)
                                             <a class="users-list-name" href="#"><span
