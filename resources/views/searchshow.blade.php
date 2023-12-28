@@ -224,7 +224,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                             <ul class="list-group list-group-bordered mb-3">
                                                 <li class="list-group-item">
                                                     <b>Account-ID</b> <a class="float-right">
-                                                        {{$user->id+99}}</a>
+                                                        {{$user->id}}</a>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <b>Accountname</b> <a class="float-right">{{$user->name}}</a>

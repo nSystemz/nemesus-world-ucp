@@ -48,7 +48,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                         </li>
                                         <li class="list-group-item">
                                             <b>Konto</b> <a
-                                                class="float-right">{{FunctionsController::getBankValue($characters->defaultbank)}}$</a>
+                                                class="float-right">{{FunctionsController::getBankValueFromAll($characters->id)}}$</a>
                                         </li>
                                         <li class="list-group-item">
                                             <b>Größe</b> <a class="float-right">{{$characters->size}}</a>
@@ -364,7 +364,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                             <ul class="list-group list-group-bordered mb-3">
                                                 <li class="list-group-item">
                                                     <b>Account-ID</b> <a class="float-right">
-                                                        {{$user->id+99}}</a>
+                                                        {{$user->id}}</a>
                                                 </li>
                                                 @if ($user->forumaccount > -1)
                                                 <li class="list-group-item">
@@ -1135,7 +1135,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                 <tr>
                                     <td>
                                         <a class="users-list-name"
-                                            href="/search/showAdmin/{{$data->id+99}}">{{$data->name}}</a>
+                                            href="/search/showAdmin/{{$data->id}}">{{$data->name}}</a>
                                     </td>
                                 </tr>
                                 @endforeach

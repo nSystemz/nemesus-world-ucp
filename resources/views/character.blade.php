@@ -35,7 +35,7 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
                                         </li>
                                         <li class="list-group-item">
                                             <b>Konto</b> <a
-                                                class="float-right">{{FunctionsController::getBankValue($data->defaultbank)}}$</a>
+                                                class="float-right">{{FunctionsController::getBankValueFromAll($data->id)}}$</a>
                                         </li>
                                         <li class="list-group-item">
                                             <b>Job</b> <a

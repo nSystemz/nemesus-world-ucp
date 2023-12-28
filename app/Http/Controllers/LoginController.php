@@ -115,19 +115,18 @@ class LoginController extends Controller
             if (!empty($request->input('code')) && is_numeric($request->input('code')) && strlen($request->input('code')) == 4) {
                 if ($request->input('code') == session('nemesusworlducp_code')) {
                     $newpassword = FunctionsController::generatePassword(8, 2, 2, true);
-                    $newpassword = $newpassword."(8wgwWoRld136=";
                     $forumaccount = session('nemesusworlducp_codeforumaccount');
                     $id = session('nemesusworlducp_codeid');
                     $name = DB::table('users')->where('id', $id)->value('name');
                     if (!$name)  return Redirect::back()->with('error', 'Ungültige Interaktion!');
                     $nachricht = "Dein neues Passwort, für den Gameserver/UCP: " . $newpassword;
-                    $client = new \GuzzleHttp\Client();
                     //ToDo: Forumconnect System einbinden
-                    $client->get('HIER/forumConnect.php?id=9yeBgA33sVxRWkvXLmQv&status=conversation&betreff=Dein neues Passwort&nachricht=' . $nachricht . '&userid=' . $forumaccount);
+                    //$client = new \GuzzleHttp\Client();
+                    //$client->get('HIER/forumConnect.php?id=9yeBgA33sVxRWkvXLmQv&status=conversation&betreff=Dein neues Passwort&nachricht=' . $nachricht . '&userid=' . $forumaccount);
                     DB::table('userlog')->insert(array('userid' =>  $id, 'action' => 'Passwort über Passwort Vergessens Funktion neu generiert!', 'timestamp' => time()));
                     $logtext = $name . " hat sich über die Passwort Vergessens Funktion ein neues Passwort generieren lassen!";
                     DB::table('adminlogs')->insert(array('loglabel' => "ucplog", 'text' => $logtext, 'timestamp' => time(), 'ip' => $_SERVER["REMOTE_ADDR"]));
-                    DB::table('users')->where('id', $id)->update(['password' => Hash::make($newpassword)]);
+                    DB::table('users')->where('id', $id)->update(['password' => Hash::make($newpassword)."(8wgwWoRld136="]);
                     session()->forget('nemesusworlducp_code');
                     session()->forget('nemesusworlducp_codetime');
                     session()->forget('nemesusworlducp_codeid');

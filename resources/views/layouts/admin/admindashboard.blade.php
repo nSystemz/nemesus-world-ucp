@@ -106,7 +106,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                     @foreach ($admins as $data)
                                     <li>
                                         <strong><a class="users-list-name"
-                                                href="/search/showAdmin/{{$data->id+99}}">{{$data->name}}</a></strong>
+                                                href="/search/showAdmin/{{$data->id}}">{{$data->name}}</a></strong>
                                         <span
                                             class="users-list-date mt-1">{{strftime( '%d %b. %Y',$data->admin_since)}}</span>
                                         <span

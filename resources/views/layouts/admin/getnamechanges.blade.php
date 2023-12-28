@@ -40,7 +40,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                     @foreach($namechanges as $data )
 
                                         <tr>
-                                            <td>{{$data->userid+99}}</td>
+                                            <td>{{$data->userid}}</td>
                                             <td>{{$data->oldname}}</td>
                                             <td>{{$data->newname}}</td>
                                             <td>{{strftime( '%d %b. %Y - %H:%M:%S',$data->timestamp)}}</td>

@@ -738,7 +738,7 @@ class HomeController extends Controller
     {
         if (Auth::check()) {
             if (!empty($id) && is_numeric($id) && strlen($id) >= 1 && strlen($id) <= 11) {
-                $realid = $id - 99;
+                $realid = $id;
                 $character = DB::table('characters')->where('id', $realid)->first();
                 if ($character) {
                     if ($character->ucp_privat == 0) {

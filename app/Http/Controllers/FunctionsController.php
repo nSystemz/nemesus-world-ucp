@@ -494,6 +494,15 @@ class FunctionsController extends Controller
         }
     }
 
+    public static function getBankValueFromAll($charid)
+    {
+        if (Auth::check()) {
+            if($charid == -1) return 0;
+            $bankvalue = DB::table('bank')->where('owner', $charid)->sum('bankvalue');
+            return $bankvalue;
+        }
+    }
+
     public static function getFaction($type)
     {
         if (Auth::check()) {

@@ -54,7 +54,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                         </li>
                                         <li class="list-group-item">
                                             <b>Konto</b> <a
-                                                class="float-right">{{FunctionsController::getBankValue($characters[Auth::user()->selectedcharacter]->defaultbank)}}$</a>
+                                                class="float-right">{{FunctionsController::getBankValueFromAll($characters[Auth::user()->selectedcharacter]->id)}}$</a>
                                         </li>
                                         <li class="list-group-item">
                                             <b>Größe</b> <a
@@ -330,7 +330,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                             <ul class="list-group list-group-bordered mb-3">
                                                 <li class="list-group-item">
                                                     <b>Account-ID</b> <a class="float-right">
-                                                        {{Auth::user()->id+99}}</a>
+                                                        {{Auth::user()->id}}</a>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <b>Accountname</b> <a class="float-right">{{Auth::user()->name}}</a>

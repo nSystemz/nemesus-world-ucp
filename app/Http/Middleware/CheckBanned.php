@@ -25,6 +25,13 @@ class CheckBanned
             session()->flash('error', 'Dieser Account ist gesperrt!');
             return redirect()->route('login');
         }
+        //Charakterlöschung
+        if(auth()->user()->selectedcharacter == -1 && auth()->user()->selectedcharacterintern == -1)
+        {
+            HomeController::logoutUser();
+            session()->flash('error', 'Bitte wähle einen Charakter ingame aus, oder erstelle dir einen!');
+            return redirect()->route('login');
+        }
         //Forumupdate
         if(auth()->check() && auth()->user()->forumaccount > -1 && (auth()->user()->forumupdate+432000) < time())
         {

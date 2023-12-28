@@ -386,7 +386,7 @@ class AdminController extends Controller
             if ($this->checkAdminLogin()) {
                 if (Auth::user()->adminlevel <= FunctionsController::Kein_Admin) return redirect::to('/home')->with('error', 'Keine Berechtigung!');
                 if (!empty($id) && is_numeric($id) && strlen($id) >= 1 && strlen($id) <= 11) {
-                    $realid = $id - 99;
+                    $realid = $id;
                     $character = DB::table('characters')->where('id', $realid)->first();
                     if ($character) {
                         $user = DB::table('users')->where('id', $character->userid)->first();
@@ -643,10 +643,10 @@ class AdminController extends Controller
                     $search = FunctionsController::db_esc_like_raw($search);
                     $countchar = DB::table('users')->where('name', 'like', '%' . $search . '%')->count();
                     if (!$countchar) {
-                        $countchar = DB::table('users')->where('id', ((int)$search) - 99)->count();
+                        $countchar = DB::table('users')->where('id', ((int)$search))->count();
                     }
                     if (!$countchar || $countchar <= 0) return view('search', ['characters' => null]);
-                    $users = DB::table('users')->where('name', 'like', '%' . $search . '%')->orwhere('id', (int)$search - 99)->limit(10)->first();
+                    $users = DB::table('users')->where('name', 'like', '%' . $search . '%')->orwhere('id', (int)$search)->limit(10)->first();
                     if (!$users) return view('search', ['characters' => null]);
                     $characters = DB::table('characters')->select('name', 'userid', 'id', 'ucp_privat', 'closed', 'screen')->where('userid', '=', $users->id)->limit(10)->get();
                     return view('search', ['characters' => $characters]);
