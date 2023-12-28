@@ -498,7 +498,7 @@ class FunctionsController extends Controller
     {
         if (Auth::check()) {
             if($charid == -1) return 0;
-            $bankvalue = DB::table('bank')->where('owner', $charid)->sum('bankvalue');
+            $bankvalue = DB::table('bank')->where('ownercharid', $charid)->sum('bankvalue');
             return $bankvalue;
         }
     }
