@@ -105,8 +105,12 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                 <ul class="users-list clearfix">
                                     @foreach ($admins as $data)
                                     <li>
+                                        @if($data->selectedcharacterintern != -1)
                                         <strong><a class="users-list-name"
-                                                href="/search/showAdmin/{{$data->id}}">{{$data->name}}</a></strong>
+                                                href="/search/showAdmin/{{$data->selectedcharacterintern}}">{{$data->name}}</a></strong>
+                                        @else
+                                        <strong>{{$data->s}}</strong>
+                                        @endif
                                         <span
                                             class="users-list-date mt-1">{{strftime( '%d %b. %Y',$data->admin_since)}}</span>
                                         <span
