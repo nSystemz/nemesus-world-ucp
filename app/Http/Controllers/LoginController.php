@@ -126,7 +126,8 @@ class LoginController extends Controller
                     DB::table('userlog')->insert(array('userid' =>  $id, 'action' => 'Passwort über Passwort Vergessens Funktion neu generiert!', 'timestamp' => time()));
                     $logtext = $name . " hat sich über die Passwort Vergessens Funktion ein neues Passwort generieren lassen!";
                     DB::table('adminlogs')->insert(array('loglabel' => "ucplog", 'text' => $logtext, 'timestamp' => time(), 'ip' => $_SERVER["REMOTE_ADDR"]));
-                    DB::table('users')->where('id', $id)->update(['password' => Hash::make($newpassword)."(8wgwWoRld136="]);
+                    $newpassword = $request->input('password');
+                    DB::table('users')->where('id', $id)->update(['password' => Hash::make($newpassword."(8wgwWoRld136=")]);
                     session()->forget('nemesusworlducp_code');
                     session()->forget('nemesusworlducp_codetime');
                     session()->forget('nemesusworlducp_codeid');
