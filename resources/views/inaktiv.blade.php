@@ -74,7 +74,6 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                             melden</button>
                                         </form>
                                         @else
-                                        @foreach($inaktiv as $data )
                                         <div style="display: flex; justify-content: center; align-items: center;">
                                             <h6 class="mt-3">Info: Du bist noch vom <strong
                                                     style="color:green">{{strftime( '%d %b. %Y',$data->date1)}}</strong>
@@ -93,7 +92,6 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                                 class="btn btn-block btn-primary mb-2 mt-3">Inaktivitätsmeldung
                                                 aufheben</button>
                                         </form>
-                                        @endforeach
                                         @endif
                                     </div>
                                 </div>
