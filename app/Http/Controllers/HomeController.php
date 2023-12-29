@@ -377,7 +377,7 @@ class HomeController extends Controller
             $accounts = DB::table('users')->count();
             $charaktere = DB::table('characters')->count();
             $cars = DB::table('vehicles')->count();
-            $houses = DB::table('vehicles')->count();
+            $houses = DB::table('houses')->count();
             $team = DB::table('users')->where('adminlevel','>',0)->count();
             return view('getstatistic', ['level' => $level, 'play_time' => $play_time, 'tode' => $tode, 'login_bonus' => $login_bonus, 'crimes' => $crimes, 'accounts' => $accounts, 'charaktere' => $charaktere, 'cars' => $cars, 'houses' => $houses, 'team' => $team, 'shootingrange' => $shootingrange]);
         }
