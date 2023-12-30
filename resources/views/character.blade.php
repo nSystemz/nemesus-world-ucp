@@ -17,12 +17,12 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
                         $counter = 0;
                         @endphp
                         @if(count($characters) > 0)
-                            @foreach($characters as $data)
-                            <div class="card card-primary card-outline mr-3 ml-2">
+                        @foreach($characters as $data)
+                        @if($data->closed == 0)<div class="card card-primary card-outline mr-3 ml-2">@else<div
+                                class="card card-primary card-outline mr-3 ml-2" style="display:none">@endif
                                 <div class="card-body box-profile">
                                     <div class="text-center">
-                                        <img class="profile-user-img img-fluid img-circle"
-                                            src="{{$data->screen}}">
+                                        <img class="profile-user-img img-fluid img-circle" src="{{$data->screen}}">
                                     </div>
                                     <h3 class="profile-username text-center">
                                         {{$data->name}}</h3>
@@ -43,11 +43,15 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
                                         </li>
                                     </ul>
                                 </div>
+                                @if ($data->closed == 0)
                                 @if ($counter == Auth::user()->selectedcharacter)
                                 <button type="button" class="btn btn-primary mr-2 ml-2 mb-2" disabled>Auswählen</button>
                                 @else
                                 <button type="button" class="btn btn-primary mr-2 ml-2 mb-2"
                                     onclick="event.preventDefault(); window.location = '{{ '/changeCharacter/'. strval($counter) }}';">Auswählen</button>
+                                @endif
+                                @else
+                                <button type="button" class="btn btn-danger mr-2 ml-2 mb-2" disabled>Gelöscht</button>
                                 @endif
                                 @php
                                 $counter ++;
@@ -56,13 +60,14 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
                             @endforeach
                             @else
                             <div class="text-center">
-                                <h3>Du hast noch keinen Charakter erstellt, du kannst dir ingame auf unserem Gameserver einen erstellen!</h3>
+                                <h3>Du hast noch keinen Charakter erstellt, du kannst dir ingame auf unserem Gameserver
+                                    einen erstellen!</h3>
                             </div>
                             @endif
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    @endsection

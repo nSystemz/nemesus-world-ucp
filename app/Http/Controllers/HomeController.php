@@ -185,7 +185,7 @@ class HomeController extends Controller
     public function selectCharacter()
     {
         if (Auth::check()) {
-            $characters = DB::table('characters')->where('closed', 0)->where('userid', Auth::user()->id)->get();
+            $characters = DB::table('characters')->where('userid', Auth::user()->id)->get();
             if(!$characters)
             {
                 session()->forget('nemesusworlducp_adminlogin');
@@ -391,8 +391,7 @@ class HomeController extends Controller
 
             if (Auth::user()->online == 1) return Redirect::back()->with('error', 'Du bist nicht offline!');
 
-            $count = DB::table('characters')->where('userid', Auth::user()
-                ->id)->count();
+            $count = DB::table('characters')->where('userid', Auth::user()->id)->count();
 
             if ($charid < 0 || $charid > $count) return Redirect::back()->with('error', 'Ungültige Interaktion!');
 

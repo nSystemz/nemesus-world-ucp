@@ -109,7 +109,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                         <strong><a class="users-list-name"
                                                 href="/search/showAdmin/{{$data->selectedcharacterintern}}">{{$data->name}}</a></strong>
                                         @else
-                                        <strong>{{$data->s}}</strong>
+                                        <strong>{{$data->name}}</strong>
                                         @endif
                                         <span
                                             class="users-list-date mt-1">{{strftime( '%d %b. %Y',$data->admin_since)}}</span>
