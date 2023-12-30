@@ -743,6 +743,7 @@ class HomeController extends Controller
                 if ($character) {
                     if ($character->ucp_privat == 0) {
                         $user = DB::table('users')->where('id', $character->userid)->first();
+                        if ($user->closed == 1) return Redirect::back()->with('error', 'Ungültige Interaktion!');
                         if ($user->dsgvo_closed == 1) return Redirect::back()->with('error', 'Ungültige Interaktion!');
                         $timeline = DB::table('timeline')->where('userid', $character->userid)->orderBy('id', 'desc')->get();
                         $inaktiv = DB::table('inactiv')->where('userid',  $character->userid)->first();
@@ -771,9 +772,9 @@ class HomeController extends Controller
 
             if (!$validator->fails()) {
                 $search = FunctionsController::db_esc_like_raw($search);
-                $countchar = DB::table('characters')->where('name', 'like', '%' . $search . '%')->count();
+                $countchar = DB::table('characters')->where('name', 'like', '%' . $search . '%')->where('closed', 0)->count();
                 if (!$countchar || $countchar <= 0) return view('search', ['characters' => null]);
-                $characters = DB::table('characters')->select('id', 'userid', 'name', 'ucp_privat', 'closed', 'screen')->where('name', 'like', '%' . $search . '%')->orwhere('name', $search)->limit(10)->get();
+                $characters = DB::table('characters')->select('id', 'userid', 'name', 'ucp_privat', 'closed', 'screen')->where('closed', 0)->where('name', 'like', '%' . $search . '%')->orwhere('name', $search)->limit(10)->get();
                 return view('search', ['characters' => $characters]);
             }
             return view('search', ['characters' => null]);

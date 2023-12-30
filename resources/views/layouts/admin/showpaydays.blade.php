@@ -17,7 +17,6 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <!-- /.col -->
                             <div class="col-md-12">
                                 <div class="card card-primary card-outline">
                                     <div class="col-md-12">
