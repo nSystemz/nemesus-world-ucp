@@ -199,18 +199,22 @@ class FunctionsController extends Controller
         }
         switch ($admin) {
             default:
-                return "Probe Moderator";
+                return "Spieler";
             case 1:
-                return "Moderator";
+                return "Probe Moderator";
             case 2:
-                return "Supporter";
+                return "Moderator";
             case 3:
-                return "Administrator";
+                return "Supporter";
             case 4:
-                return "High-Administrator";
+                return "Administrator";
             case 5:
-                return "Manager";
+                return "High-Administrator";
             case 6:
+                return "Manager";
+            case 7:
+                return "Development";
+            case 8:
                 return "Projektleiter";
         }
     }
