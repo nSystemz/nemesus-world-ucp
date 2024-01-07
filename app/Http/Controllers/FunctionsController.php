@@ -199,7 +199,7 @@ class FunctionsController extends Controller
         }
         switch ($admin) {
             default:
-                return "Spieler";
+                return "Kein Admin";
             case 1:
                 return "Probe Moderator";
             case 2:
