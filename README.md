@@ -34,6 +34,6 @@ Das UCP bietet einige Features, unter anderem:
     
 Ihr wollt uns unterstützen? https://ko-fi.com/nemesustv
 
-Beachtet bitte die ToDos im Code und die Installationsanleitung auf meinem Youtube!
+Beachtet bitte die ToDos im Code und die Installationsanleitung auf meinem Youtube Kanal!
 
 Weitere Infos gibt es auf https://nemesus.de
