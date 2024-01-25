@@ -40,9 +40,6 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                             <b>Fahrzeuge</b> <a class="float-right">{{$cars}}</a>
                                         </li>
                                         <li class="list-group-item ">
-                                            <b>Kasseninhalt</b> <a class="float-right">{{$faction->bankvalue}}$</a>
-                                        </li>
-                                        <li class="list-group-item ">
                                             <b>Dienstzeit (Woche)</b> <a class="float-right">{{$dutytime}}h</a>
                                         </li>
                                         </li>
