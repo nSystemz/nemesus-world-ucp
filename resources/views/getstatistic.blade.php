@@ -110,7 +110,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                                     <td>{{$counter ++}}</td>
                                                     <td>{{$data->name}}</td>
                                                     <td><span class="badge bg-dark">Spielstunden:
-                                                            {{$data->play_points}}h</span></td>
+                                                            {{$data->play_time}}h</span></td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
