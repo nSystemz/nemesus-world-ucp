@@ -646,9 +646,9 @@ class AdminController extends Controller
                         $countchar = DB::table('users')->where('id', ((int)$search))->count();
                     }
                     if (!$countchar || $countchar <= 0) return view('search', ['characters' => null]);
-                    $users = DB::table('users')->where('name', 'like', '%' . $search . '%')->orwhere('id', (int)$search)->limit(10)->first();
+                    $users = DB::table('users')->where('name', 'like', '%' . $search . '%')->orwhere('id', (int)$search)->limit(4)->first();
                     if (!$users) return view('search', ['characters' => null]);
-                    $characters = DB::table('characters')->select('name', 'userid', 'id', 'ucp_privat', 'closed', 'screen')->where('userid', '=', $users->id)->limit(10)->get();
+                    $characters = DB::table('characters')->select('name', 'userid', 'id', 'ucp_privat', 'closed', 'screen')->where('userid', '=', $users->id)->limit(4)->get();
                     return view('search', ['characters' => $characters]);
                 }
                 return view('search', ['characters' => null]);
