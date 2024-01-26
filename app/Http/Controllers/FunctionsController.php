@@ -464,18 +464,22 @@ class FunctionsController extends Controller
     {
         $ticketcount = 0;
         if (Auth::user()->adminlevel <= FunctionsController::Kein_Admin || !session('nemesusworlducp_adminlogin')) {
-            $ticketcount = DB::table('tickets as ts')->distinct()->join('ticket_user as tu', 'ts.id', '=', 'tu.ticketid')->where('ts.status', "!=", 9)->select('ts.*')->where('tu.userid', Auth::user()->id)->orderby('timestamp', 'asc')->limit(50)->count();
+            $tickets = DB::table('tickets as ts')->distinct()->join('ticket_user as tu', 'ts.id', '=', 'tu.ticketid')->where('ts.status', "!=", 9)->select('ts.*')->where('tu.userid', Auth::user()->id)->orderby('timestamp', 'asc')->limit(50)->get();
         } else {
             if(Auth::user()->adminlevel >= FunctionsController::High_Administrator)
             {
-                $ticketcount = DB::table('tickets as ts')->distinct()->join('ticket_user as tu', 'ts.id', '=', 'tu.ticketid')->where('ts.status', "!=", 9)->select('ts.*')->orderby('timestamp', 'asc')->limit(50)->count();
+                $tickets = DB::table('tickets as ts')->distinct()->join('ticket_user as tu', 'ts.id', '=', 'tu.ticketid')->where('ts.status', "!=", 9)->select('ts.*')->orderby('timestamp', 'asc')->limit(50)->get();
             }
             else
             {
-                $ticketcount = DB::table('tickets as ts')->distinct()->join('ticket_user as tu', 'ts.id', '=', 'tu.ticketid')->where('ts.status', "!=", 9)->select('ts.*')->where(function ($q) {
+                $tickets = DB::table('tickets as ts')->distinct()->join('ticket_user as tu', 'ts.id', '=', 'tu.ticketid')->where('ts.status', "!=", 9)->select('ts.*')->where(function ($q) {
                     $q->where('tu.userid', Auth::user()->id)->orwhere('ts.admin', -1);
-                })->orderby('timestamp', 'asc')->limit(50)->count();
+                })->orderby('timestamp', 'asc')->limit(50)->get();
             }
+        }
+        foreach($tickets as $data)
+        {
+            $ticketcount++;
         }
         return $ticketcount;
     }
