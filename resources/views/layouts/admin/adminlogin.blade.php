@@ -35,6 +35,11 @@
                                 Nachdem Login werden sämtliche Interaktionen inkl. deiner IP geloggt.
                                 Solltest du damit nicht einverstanden sein, so verlasse bitte diese Seite!
                             </div>
+                            </hr class="mt-1">
+                            <div class="mt-3 text-center text-muted"
+                                style="display: flex; justify-content: center; align-items: center;">
+                                Fragen zum UCP? Dann melde dich doch gerne auf dem Nemesus.de Discord Server: <a href="https://discord.nemesus.de">https://discord.nemesus.de</a>
+                            </div>
                         </div>
                     </div>
                 </div>

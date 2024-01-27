@@ -440,6 +440,20 @@ class HomeController extends Controller
         }
     }
 
+        //Bizzsystem
+        public function getBizz()
+        {
+            if (Auth::check()) {
+                $name = DB::table('characters')->where('id', Auth::user()
+                ->selectedcharacterintern)
+                ->value('name');
+                $bizz = DB::table('business')->where('owner', $name)->get();
+                $count = DB::table('business')->where('owner', $name)->count();
+                if (!$count || $count <= 0) return redirect::to('/home')->with('error', 'Keine Businesse vorhanden!');
+                return view('bizz', ['bizz' => $bizz]);
+            }
+        }
+
     public function getFurniture($id=-1)
     {
         if (Auth::check()) {

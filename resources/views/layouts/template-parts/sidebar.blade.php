@@ -98,6 +98,12 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
                         <p>Meine Häuser</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="/bizz/" class="nav-link">
+                        <i class="fa-solid fa-shop"></i>
+                        <p>Meine Businesse</p>
+                    </a>
+                </li>
                 @if(FunctionsController::getFaction('faction') > 0)
                 <li class="nav-item">
                     <a href="/faction/" class="nav-link">

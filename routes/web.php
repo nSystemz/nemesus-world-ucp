@@ -40,6 +40,9 @@ Route::post('/getBank', [App\Http\Controllers\HomeController::class, 'getBank'])
 Route::get('/getBank2/{id}', [App\Http\Controllers\HomeController::class, 'getBank2'])->name('getBank2');
 Route::post('/transfer', [App\Http\Controllers\HomeController::class, 'transfer'])->name('transfer');
 
+//Business
+Route::get('/bizz', [App\Http\Controllers\HomeController::class, 'getBizz'])->name('bizz');
+
 //House
 Route::get('/house', [App\Http\Controllers\HomeController::class, 'getHouse'])->name('house');
 Route::get('/furniture/{id}', [App\Http\Controllers\HomeController::class, 'getFurniture'])->name('getFurniture');
