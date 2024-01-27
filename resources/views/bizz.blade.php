@@ -18,7 +18,7 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
                             <div class="card card-primary card-outline mr-3 ml-2">
                                 <div class="card-body box-profile">
                                     <p class="text-muted text-center">
-                                        <i class="fas fa-house-user nav-icon" style="font-size: 4vh;color:green"></i>
+                                        <i class="fa-solid fa-shop nav-icon" style="font-size: 4vh;color:green"></i>
                                     </p>
                                     <p class="text-muted text-center">
                                         {{$data->name}} - {{$data->id}}</p>
