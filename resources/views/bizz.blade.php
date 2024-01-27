@@ -29,7 +29,7 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
                                             <b>Besitzer</b> <a class="float-right"> {{$data->owner}}</a>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>Produkte</b> <a class="float-right"> {{$data->products}}</a>
+                                            <b>Produkte</b> <a class="float-right"> {{$data->products}}/2000 Stck</a>
                                         </li>
                                         <li class="list-group-item">
                                             <b>Produktpreis</b> <a class="float-right"> {{$data->prodprice}}$</a>
@@ -38,10 +38,10 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
                                             <b>Verkäufe</b> <a class="float-right"> {{$data->selled}}x</a>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>Kasseninhalt</b> <a class="float-right"> {{$data->cash}}x</a>
+                                            <b>Kasseninhalt</b> <a class="float-right"> {{$data->cash}}$</a>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>Steuern</b> <a class="float-right"> {{$data->govcash}}x</a>
+                                            <b>Steuern</b> <a class="float-right"> {{$data->govcash}}$</a>
                                         </li>
                                     </ul>
                                 </div>

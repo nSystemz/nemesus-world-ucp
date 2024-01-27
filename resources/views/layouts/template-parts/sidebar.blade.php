@@ -100,7 +100,7 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
                 </li>
                 <li class="nav-item">
                     <a href="/bizz/" class="nav-link">
-                        <i class="fa-solid fa-shop"></i>
+                        <i class="fa-solid fa-shop nav-icon"></i>
                         <p>Meine Businesse</p>
                     </a>
                 </li>
