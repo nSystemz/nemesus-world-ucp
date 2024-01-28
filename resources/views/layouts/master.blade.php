@@ -1,5 +1,7 @@
-<!-- Nemesus World User Control Panel -->
+<!-- Nemesus World User Control Panel (GTA5 - RageMP) -->
 <!-- Das UCP wurde von https://nemesus.de erstellt -->
+<!-- Download: https://nemesus-world.de -->
+<!-- Discord: https://discord.nemesus.de -->
 <!-- Bei Fragen gerne an info@nemesus.de wenden! -->
 
 <!DOCTYPE html>
@@ -42,6 +44,7 @@ if (currentTheme) {
         }
     }
 }
+
 function switchTheme() {
     if (getCookie('nemesusworlducp_theme') == 'light') {
         if (!document.body.classList.contains('dark-mode')) {
@@ -61,6 +64,7 @@ function switchTheme() {
         }
     }
 }
+
 document.getElementById("showDarkmode").style.visibility = "visible";
 function getCookie(cname) {
   let name = cname + "=";

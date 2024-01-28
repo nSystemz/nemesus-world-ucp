@@ -14,7 +14,7 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
                     @include("layouts.template-parts.alert")
                     <div class="row">
                         @foreach($bizz as $data )
-                        <div class="col-md-3 mt-1">
+                        <div class="col-md-4 mt-1">
                             <div class="card card-primary card-outline mr-3 ml-2">
                                 <div class="card-body box-profile">
                                     <p class="text-muted text-center">
@@ -35,7 +35,7 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
                                             <b>Produktpreis</b> <a class="float-right"> {{$data->prodprice}}$</a>
                                         </li>
                                         <li class="list-group-item">
-                                            <b>Verkäufe</b> <a class="float-right"> {{$data->selled}}x</a>
+                                            <b>Heutige Verkäufe</b> <a class="float-right"> {{$data->selled}}x</a>
                                         </li>
                                         <li class="list-group-item">
                                             <b>Kasseninhalt</b> <a class="float-right"> {{$data->cash}}$</a>
