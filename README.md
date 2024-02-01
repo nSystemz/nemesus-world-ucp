@@ -2,6 +2,8 @@
 
 Dies ist das UCP für den Nemesus World Gamemode (RageMP/GTA 5), basierend auf Laravel / PHP 8
 
+**Auf der Suche nach einem günstigen Plesk Webspace? ZAP-Hosting: https://bit.ly/3OXqYb9 und mit dem Gutschein: Nsus-a-3805 noch kräftig sparen! (Werbung)**
+
 Hier und da gibt es natürlich noch ein paar Unschönheiten, Bugs und Unklarheiten. Diese dürfte man aber mit relativ wenig Zeit entfernen können und natürlich ist das UCP nicht zu 100% fertig gestellt!
 
 (Euch gefällt das UCP? Dann lasst doch gerne hier bei dem Repo einen Stern da ;))
