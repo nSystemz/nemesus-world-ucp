@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,7 +25,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        // Jeden Tag um 01:00 Uhr
+        $schedule->call(function () {
+            $date31 = \Carbon\Carbon::today()->subDays(31);
+            DB::table('adminlogs')->where('timestamp', '>=', $date31)->delete();
+            DB::table('logs')->where('timestamp', '>=', $date31)->delete();
+        })->daily()->at('1:00');
     }
 
     /**

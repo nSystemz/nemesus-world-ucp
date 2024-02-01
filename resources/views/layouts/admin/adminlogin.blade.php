@@ -38,7 +38,7 @@
                             </hr class="mt-1">
                             <div class="mt-3 text-center text-muted"
                                 style="display: flex; justify-content: center; align-items: center;">
-                                Fragen zum UCP? Dann melde dich doch gerne auf dem Nemesus.de Discord Server: <a href="https://discord.nemesus.de">https://discord.nemesus.de</a>
+                                Fragen zum UCP? Dann melde dich doch gerne auf dem Nemesus.de Discord Server (s. Footer)!
                             </div>
                         </div>
                     </div>
