@@ -92,6 +92,9 @@ setlocale(LC_TIME, 'de_DE', 'de_DE.UTF-8');
                                         <b>Ab Rang</b> <a class="float-right">{{$data->rang}}</a>
                                     </li>
                                     @endif
+                                    @if(str_contains($data->garage, 'admin'))
+                                        <button type="button" class="btn btn-danger mt-1 mb-1" disabled>Gesperrt</button>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
