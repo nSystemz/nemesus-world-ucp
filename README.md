@@ -34,7 +34,7 @@ Das UCP bietet einige Features, unter anderem:
     Vollständiges Adminsystem
     und vieles mehr ...
     
-Ihr wollt uns unterstützen? https://ko-fi.com/nemesustv
+☕ Ihr wollt uns unterstützen? https://ko-fi.com/nemesustv ☕
 
 Beachtet bitte die ToDos im Code und die Installationsanleitung auf meinem Youtube Kanal!
 
