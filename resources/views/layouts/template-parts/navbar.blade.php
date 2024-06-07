@@ -4,7 +4,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
     </ul>
-    <marquee><span class="ml-2">Viel Spass mit dem UCP - Nemesus.de - {{date('d-m-Y - h:i:sa', time())}}</span></marquee>
+    <marquee><span class="ml-2">Viel Spass mit dem UCP - Nemesus.de - {{strftime ("%d. %B %Y",time()));}}</span></marquee>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
