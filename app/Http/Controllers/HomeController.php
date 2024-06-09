@@ -146,8 +146,8 @@ class HomeController extends Controller
     public function updateForum(Request $request)
     {
         if (Auth::check()) {
-            if (Auth::user()->forumaccount > -1) {
-                if (time() > Auth::user()->forumupdate && Auth::user()->forumupdate > 0) return redirect::to('/forum')->with('error', 'Du kannst deine Forumrechte nur alle 25 Minuten updaten!');
+            if (Auth::user()->forumaccount >= 0) {
+                if (Auth::user()->forumupdate > 0 && Auth::user()->forumupdate > time()) return redirect::to('/forum')->with('error', 'Du kannst deine Forumrechte nur alle 25 Minuten updaten!');
                 if(FunctionsController::updateWBBGroups(Auth::user()))
                 {
                     return redirect::to('/forum')->with('success', 'Forumrechte erfolgreich aktualisiert!');

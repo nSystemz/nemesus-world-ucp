@@ -721,4 +721,32 @@ class FunctionsController extends Controller
 
         endswitch;
     }
+
+    static function checkForUCPUpdate()
+    {
+        $oldVersionDate = "2023-12-28T15:55:53Z";
+        $url = "https://api.github.com/repos/nSystemz/nemesus-world-ucp/releases/latest";
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+                'Accept: application/json'
+            ),
+        ));
+        $response = curl_exec($curl);
+        $dataCheck = json_decode($response);
+        $data = $dataCheck[0]->created_at;
+        if($data != $oldVersionDate)
+        {
+            return true;
+        }
+        return false;
+    }
 }
