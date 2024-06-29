@@ -27,7 +27,8 @@ class FunctionsController extends Controller
     const Administrator = 4;
     const High_Administrator = 5;
     const Manager = 6;
-    const Projektleiter = 7;
+    const Development = 7;
+    const Projektleiter = 8;
 
     public static function generatePassword(
         $passwordlength = 8,
