@@ -415,7 +415,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                                 </li>
                                                 <li class="list-group-item">
                                                     <b>Letzte Speicherung</b> <a
-                                                        class="float-right">{{strftime( '%d %b. %Y - %H:%M:%S',Auth::user()->last_saved)}}</a>
+                                                        class="float-right">{{strftime( '%d %b. %Y - %H:%M:%S',Auth::user()->last_save)}}</a>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <b>Namechanges</b> <a

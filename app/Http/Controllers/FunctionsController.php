@@ -63,14 +63,14 @@ class FunctionsController extends Controller
 
         $stack = str_shuffle($stack);
 
-        if(strlen($stack) < 8)
-        {
+        if (strlen($stack) < 8) {
             return FunctionsController::generatePassword(8, 2, 2, true);
         }
         return $stack;
     }
 
-    public static function generateCode() {;
+    public static function generateCode()
+    {;
         return mt_rand(1000, 9999);
     }
 
@@ -100,7 +100,7 @@ class FunctionsController extends Controller
         }
     }
 
-    public static function getAllWBBGroups($user=null)
+    public static function getAllWBBGroups($user = null)
     {
         //6: Verifiziert
         //14-16: Premium Bronze, Premium Silber, Premium Gold
@@ -110,83 +110,61 @@ class FunctionsController extends Controller
 
     public static function updateWBBGroups($user)
     {
-        if(!$user)
-        {
-            if($user->forumaccount == -1) return false;
-            $groups = "6"; //Verifiziert
-            $removegroups = "-1"; //Gruppen zum löschen
-            //Premium
-            if($user->premium > 0 && $user->premium_time > time())
-            {
-                if($user->premium == 1)
-                {
-                    $groups = $groups . ",16";
-                    $removegroups = $removegroups . ",14,15";
-                }
-                else if($user->premium == 1)
-                {
-                    $groups = $groups . ",15";
-                    $removegroups = $removegroups . ",14,16";
-                }
-                else if($user->premium == 1)
-                {
-                    $groups = $groups . ",14";
-                    $removegroups = $removegroups . ",15,16";
-                }
+        if ($user->forumaccount == -1) return false;
+        $groups = "6"; //Verifiziert
+        $removegroups = "-1"; //Gruppen zum löschen
+        //Premium
+        if ($user->premium > 0 && $user->premium_time > time()) {
+            if ($user->premium == 1) {
+                $groups = $groups . ",16";
+                $removegroups = $removegroups . ",14,15";
+            } else if ($user->premium == 1) {
+                $groups = $groups . ",15";
+                $removegroups = $removegroups . ",14,16";
+            } else if ($user->premium == 1) {
+                $groups = $groups . ",14";
+                $removegroups = $removegroups . ",15,16";
             }
-            else
-            {
-                $removegroups = $removegroups . ",14,15,16";
-            }
-            //Fraktion
-            $characters = DB::table('characters')->where('userid', $user->id)->get();
-            if(!$characters) return false;
-            foreach($characters as $data)
-            {
-                if($data->faction > 0)
-                {
-                    $leader = DB::table('factions')->where('id', $data->faction)->value('leader');
-                    //SAPD
-                    if($data->faction == 1)
-                    {
-                        if($data->id == $leader || $data->rang >= 10)
-                        {
-                            if(!str_contains($groups, ',20'))
-                            {
-                                $groups = $groups . ",20";
-                            }
-                            if(!str_contains($removegroups, ',21'))
-                            {
-                                $removegroups = $removegroups . ",21";
-                            }
+        } else {
+            $removegroups = $removegroups . ",14,15,16";
+        }
+        //Fraktion
+        $characters = DB::table('characters')->where('userid', $user->id)->get();
+        if (!$characters) return false;
+        foreach ($characters as $data) {
+            if ($data->faction > 0) {
+                $leader = DB::table('factions')->where('id', $data->faction)->value('leader');
+                //SAPD
+                if ($data->faction == 1) {
+                    if ($data->id == $leader || $data->rang >= 10) {
+                        if (!str_contains($groups, ',20')) {
+                            $groups = $groups . ",20";
                         }
-                        else
-                        {
-                            if(!str_contains($groups, ',21'))
-                            {
-                                $groups = $groups . ",21";
-                            }
-                            if(!str_contains($removegroups, ',20'))
-                            {
-                                $removegroups = $removegroups . ",20";
-                            }
+                        if (!str_contains($removegroups, ',21')) {
+                            $removegroups = $removegroups . ",21";
+                        }
+                    } else {
+                        if (!str_contains($groups, ',21')) {
+                            $groups = $groups . ",21";
+                        }
+                        if (!str_contains($removegroups, ',20')) {
+                            $removegroups = $removegroups . ",20";
                         }
                     }
                 }
             }
-            //SAPD
-            if(!str_contains($groups, ',20') && !str_contains($groups, ',21') && !str_contains($removegroups, ',20') && !str_contains($removegroups, ',21'))
-            {
-                $removegroups = $removegroups . ",20,21";
-            }
-            //Fraktionen entfernen
-            $client = new \GuzzleHttp\Client();
-            //ToDo: Forumconnect System einbinden
-            $response1 = $client->get('HIER/forumConnect.php?id=9yeBgA33sVxRWkvXLmQv&status=removefromgroups&userid=' . $user->forumaccount . '&groupids='.$removegroups);
-            $response2 = $client->get('HIER/forumConnect.php?id=9yeBgA33sVxRWkvXLmQv&status=settogroups&userid=' . $user->forumaccount . '&groupids='.$groups);
-            DB::table('users')->where('id', $user->forumaccount)->update(['forumupdate' => time() + (60 * 25)]);
-            return true;
         }
+        //SAPD
+        if (!str_contains($groups, ',20') && !str_contains($groups, ',21') && !str_contains($removegroups, ',20') && !str_contains($removegroups, ',21')) {
+            $removegroups = $removegroups . ",20,21";
+        }
+        //Fraktionen entfernen
+        $client = new \GuzzleHttp\Client();
+        //ToDo: Forumconnect System einbinden
+        $response1 = $client->get('HIER/forumConnect.php?id=9yeBgA33sVxRWkvXLmQv&status=removefromgroups&userid=' . $user->forumaccount . '&groupids=' . $removegroups);
+        $response2 = $client->get('HIER/forumConnect.php?id=9yeBgA33sVxRWkvXLmQv&status=settogroups&userid=' . $user->forumaccount . '&groupids=' . $groups);
+        DB::table('users')->where('id', $user->id)->update(['forumupdate' => time() + (60 * 25)]);
+        return true;
     }
 
     public static function getAdminRangName($admin, $userid = -1)
@@ -247,8 +225,7 @@ class FunctionsController extends Controller
 
     public static function getFactionMembers($factionid)
     {
-        if(!$factionid)
-        {
+        if (!$factionid) {
             session()->flash('error', 'Bitte erstell dir zuerst einen Charakter!');
             session()->forget('nemesusworlducp_adminlogin');
             session()->forget('nemesusworlducp_failedadminlogin');
@@ -353,13 +330,10 @@ class FunctionsController extends Controller
         if (Auth::check()) {
             $bank = DB::table('bank')->where('banknumber', $banknumber)->first();
             $name = "n/A";
-            if($bank->groupid <= 0)
-            {
+            if ($bank->groupid <= 0) {
                 $charactername = DB::table('characters')->where('id', $bank->ownercharid)->value('name');
                 $name = $charactername;
-            }
-            else
-            {
+            } else {
                 $groupname = DB::table('groups')->where('id', $bank->groupid)->value('name');
                 $name = $groupname;
             }
@@ -372,12 +346,9 @@ class FunctionsController extends Controller
     {
         if (Auth::check() && is_numeric($id) && $id != -1) {
             $character = DB::table('characters')->where('id', $id)->first();
-            if (!$character || $character == null)
-            {
+            if (!$character || $character == null) {
                 $name = "Keiner";
-            }
-            else
-            {
+            } else {
                 $name = $character->name;
             }
             return $name;
@@ -388,13 +359,10 @@ class FunctionsController extends Controller
     public static function getCharacterNameByID($id)
     {
         if (Auth::check() && is_numeric($id) && $id != -1) {
-            $character = DB::table('characters')->where('id',$id)->first();
-            if (!$character || $character == null)
-            {
+            $character = DB::table('characters')->where('id', $id)->first();
+            if (!$character || $character == null) {
                 $name = "Keiner";
-            }
-            else
-            {
+            } else {
                 $name = $character->name;
             }
             return $name;
@@ -405,7 +373,7 @@ class FunctionsController extends Controller
     public static function getOnlineStatus($id)
     {
         if (Auth::check() && is_numeric($id) && $id != -1) {
-            $onlinestatus = DB::table('characters')->where('id',$id)->first()->online;
+            $onlinestatus = DB::table('characters')->where('id', $id)->first()->online;
             return $onlinestatus;
         }
         return 0;
@@ -441,8 +409,7 @@ class FunctionsController extends Controller
             $name = "Keiner";
             if (!$id || $id == -1) return "Warte auf Bearbeitung";
             $name = DB::table('users')->where('id', $id)->value('name');
-            if (!$name || $name == null)
-            {
+            if (!$name || $name == null) {
                 return "Keiner";
             }
             return $name;
@@ -467,19 +434,15 @@ class FunctionsController extends Controller
         if (Auth::user()->adminlevel <= FunctionsController::Kein_Admin || !session('nemesusworlducp_adminlogin')) {
             $tickets = DB::table('tickets as ts')->distinct()->join('ticket_user as tu', 'ts.id', '=', 'tu.ticketid')->where('ts.status', "!=", 9)->select('ts.*')->where('tu.userid', Auth::user()->id)->orderby('timestamp', 'asc')->limit(50)->get();
         } else {
-            if(Auth::user()->adminlevel >= FunctionsController::High_Administrator)
-            {
+            if (Auth::user()->adminlevel >= FunctionsController::High_Administrator) {
                 $tickets = DB::table('tickets as ts')->distinct()->join('ticket_user as tu', 'ts.id', '=', 'tu.ticketid')->where('ts.status', "!=", 9)->select('ts.*')->orderby('timestamp', 'asc')->limit(50)->get();
-            }
-            else
-            {
+            } else {
                 $tickets = DB::table('tickets as ts')->distinct()->join('ticket_user as tu', 'ts.id', '=', 'tu.ticketid')->where('ts.status', "!=", 9)->select('ts.*')->where(function ($q) {
                     $q->where('tu.userid', Auth::user()->id)->orwhere('ts.admin', -1);
                 })->orderby('timestamp', 'asc')->limit(50)->get();
             }
         }
-        foreach($tickets as $data)
-        {
+        foreach ($tickets as $data) {
             $ticketcount++;
         }
         return $ticketcount;
@@ -504,7 +467,7 @@ class FunctionsController extends Controller
     public static function getBankValueFromAll($charid)
     {
         if (Auth::check()) {
-            if($charid == -1) return 0;
+            if ($charid == -1) return 0;
             $bankvalue = DB::table('bank')->where('ownercharid', $charid)->sum('bankvalue');
             return $bankvalue;
         }
@@ -528,8 +491,7 @@ class FunctionsController extends Controller
     {
         if (Auth::check()) {
             $wartung = DB::table('settings')->where('id', 1)->value('wartung');
-            if($wartung && $wartung == 1)
-            {
+            if ($wartung && $wartung == 1) {
                 return true;
             }
             return false;
@@ -540,14 +502,14 @@ class FunctionsController extends Controller
     {
         if (Auth::check()) {
             $charid = DB::table('characters')->where('userid', Auth::user()->id)->where('id', Auth::user()->selectedcharacterintern)->first();
-            if(!$charid) return 0;
+            if (!$charid) return 0;
             $characters = DB::table('characters')->where('id', $charid->id)->first();
-            if(!$characters) return 0;
+            if (!$characters) return 0;
             if ($type == 'group') {
                 $return = $characters->mygroup;
             } else if ($type == 'rang') {
                 $group = DB::table('groups_members')->where('charid', $charid->id)->where('groupsid', $characters->mygroup)->first();
-                if(!$group) return 0;
+                if (!$group) return 0;
                 $return = $group->rang;
             }
             return $return;
@@ -556,27 +518,17 @@ class FunctionsController extends Controller
 
     public static function getSkillName($skillevel)
     {
-        if (Auth::check())
-        {
+        if (Auth::check()) {
             $retSkill = "Anfänger";
-            if(strval($skillevel) <= 1)
-            {
+            if (strval($skillevel) <= 1) {
                 $retSkill = "Anfänger";
-            }
-            else if(strval($skillevel) == 2)
-            {
+            } else if (strval($skillevel) == 2) {
                 $retSkill = "Erfahrener";
-            }
-            else if(strval($skillevel) == 3)
-            {
+            } else if (strval($skillevel) == 3) {
                 $retSkill = "Profi";
-            }
-            else if(strval($skillevel) == 4)
-            {
+            } else if (strval($skillevel) == 4) {
                 $retSkill = "Meister";
-            }
-            else if(strval($skillevel) > 4)
-            {
+            } else if (strval($skillevel) > 4) {
                 $retSkill = "Experte";
             }
             return $retSkill;
@@ -587,23 +539,23 @@ class FunctionsController extends Controller
     {
         switch ($type) {
             case 1: {
-              return "Essen";
-            }
+                    return "Essen";
+                }
             case 2: {
-              return "Trinken";
-            }
+                    return "Trinken";
+                }
             case 3: {
-              return "Sonstiges";
-            }
+                    return "Sonstiges";
+                }
             case 4: {
-                return "Benutzbare Items";
-            }
+                    return "Benutzbare Items";
+                }
             case 5: {
-              return "Waffen";
-            }
+                    return "Waffen";
+                }
             case 6: {
-              return "Munition";
-            }
+                    return "Munition";
+                }
         }
         return "Essen";
     }
@@ -611,25 +563,17 @@ class FunctionsController extends Controller
     public static function countItemWeight($item)
     {
         $count = 0;
-        if($item)
-        {
+        if ($item) {
             $props = explode(",", $item->props);
-            if($props[0] >= 5000)
-            {
+            if ($props[0] >= 5000) {
                 $props[0] = 0;
             }
-            if($item->type != 5)
-            {
-                $count += $item->weight*$item->amount;
-            }
-            else
-            {
-                if($item->description == "Flaregun")
-                {
+            if ($item->type != 5) {
+                $count += $item->weight * $item->amount;
+            } else {
+                if ($item->description == "Flaregun") {
                     $count += $item->weight + ($props[0] * 30);
-                }
-                else
-                {
+                } else {
                     $count += $item->weight + ($props[0] * 3);
                 }
             }
@@ -641,41 +585,41 @@ class FunctionsController extends Controller
     {
         switch (strtolower($weaponname)) {
             case "dolch": {
-              return 1;
-            }
+                    return 1;
+                }
             case "baseballschläger": {
-              return 1;
-            }
+                    return 1;
+                }
             case "brechstange": {
-              return 1;
-            }
+                    return 1;
+                }
             case "taschenlampe": {
-              return 1;
-            }
+                    return 1;
+                }
             case "golfschläger": {
-              return 1;
-            }
+                    return 1;
+                }
             case "axt": {
-              return 1;
-            }
+                    return 1;
+                }
             case "schlagring": {
-              return 1;
-            }
+                    return 1;
+                }
             case "messer": {
-              return 1;
-            }
+                    return 1;
+                }
             case "machete": {
-              return 1;
-            }
+                    return 1;
+                }
             case "klappmesser": {
-              return 1;
-            }
+                    return 1;
+                }
             case "schlagstock": {
-              return 1;
-            }
+                    return 1;
+                }
             case "poolcue": {
-              return 1;
-            }
+                    return 1;
+                }
         }
         return 0;
     }
