@@ -585,7 +585,7 @@ class AdminController extends Controller
         if (Auth::check()) {
             if ($this->checkAdminLogin()) {
                 if (Auth::user()->adminlevel <= FunctionsController::Kein_Admin) return redirect::to('/home')->with('error', 'Keine Berechtigung!');
-                if (!empty($request->search) && strlen($request->search) >= 3 && strlen($request->search) <= 35) {
+                if (!empty($request->search) && strlen($request->search) >= 1 && strlen($request->search) <= 35) {
                     return redirect()->route('adminAccountSearch', ['search' => $request->search]);
                 }
                 return Redirect::to('/adminDashboard');
