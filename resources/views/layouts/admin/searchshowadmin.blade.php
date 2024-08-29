@@ -443,6 +443,12 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                                     <b>Letzter Login</b> <a
                                                         class="float-right">{{strftime( '%d %b. %Y - %H:%M:%S',$user->last_login)}}</a>
                                                 </li>
+                                                @if(Auth::user()->adminlevel > FunctionsController::High_Administrator)
+                                                <li class="list-group-item">
+                                                    <b>Letzte IP</b> <a
+                                                        class="float-right">{{$user->last_ip)}}</a>
+                                                </li>
+                                                @endif
                                                 <li class="list-group-item">
                                                     <b>Registriert seit</b> <a
                                                         class="float-right">{{strftime( '%d %b. %Y - %H:%M:%S',$user->account_created)}}</a>
