@@ -636,7 +636,7 @@ class AdminController extends Controller
                     abort(403);
                 }
                 $validator = Validator::make($request->all(), [
-                    'search' => 'required|max:35|min:3',
+                    'search' => 'required|max:35|min:1',
                 ]);
 
                 if (!$validator->fails()) {
