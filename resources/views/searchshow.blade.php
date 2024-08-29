@@ -290,9 +290,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                                     <b>Letzter Login</b> <a
                                                         class="float-right">{{strftime( '%d %b. %Y - %H:%M:%S',$user->last_login)}}</a>
                                                 </li>
-                                                @if($user->last_ip && $user->last_ip != null && strlen($user->last_ip) >
-                                                5 && Auth::user()->adminlevel >=
-                                                FunctionsController::High_Administrator)
+                                                @if(strlen($user->last_ip) > 5 && Auth::user()->adminlevel >= FunctionsController::High_Administrator)
                                                 <li class="list-group-item">
                                                     <b>Letzte IP</b> <a class="float-right">{{$user->last_ip}}</a>
                                                 </li>
