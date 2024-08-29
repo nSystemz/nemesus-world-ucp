@@ -446,7 +446,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                                 @if(Auth::user()->adminlevel > FunctionsController::High_Administrator)
                                                 <li class="list-group-item">
                                                     <b>Letzte IP</b> <a
-                                                        class="float-right">{{$user->last_ip)}}</a>
+                                                        class="float-right">{{$user->last_ip}}</a>
                                                 </li>
                                                 @endif
                                                 <li class="list-group-item">
