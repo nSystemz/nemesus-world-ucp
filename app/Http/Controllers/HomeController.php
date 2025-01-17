@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Http\Controllers\FunctionsController as FunctionsController;
+use App\Http\Controllers\LoginController as LoginController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -574,7 +575,7 @@ class HomeController extends Controller
             if (!empty($request->input('password') && strlen($request->input('password')) >= 6 && strlen($request->input('password')) <= 35)) {
                 DB::table('userlog')->insert(array('userid' => Auth::user()->id, 'action' => 'Neues Passwort gesetzt', 'timestamp' => time()));
                 $newpassword = $request->input('password');
-                DB::table('users')->where('id', Auth::user()->id)->update(['password' => Hash::make($newpassword."(8wgwWoRld136=")]);
+                DB::table('users')->where('id', Auth::user()->id)->update(['password' => Hash::make($newpassword . LoginController::Pepper)]);
                 return redirect::to('/home')->with('success', 'Passwort erfolgreich geändert!');
             } else {
                 return redirect::to('/home')->with('error', 'Ungültiges Passwort!');

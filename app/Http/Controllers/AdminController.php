@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use League\HTMLToMarkdown\HtmlConverter;
+use App\Http\Controllers\LoginController as LoginController;
 
 setlocale(LC_TIME, 'de_DE', 'de_DE.UTF-8');
 
@@ -492,7 +493,7 @@ class AdminController extends Controller
                     if (!empty($request->input('password')) && strlen($request->input('password')) >= 6 && strlen($request->input('password')) <= 35) {
                         $logtext = Auth::user()->name . " hat das Adminpasswort geändert!";
                         DB::table('adminlogs')->insert(array('loglabel' => "ucplog", 'text' => $logtext, 'timestamp' => time(), 'ip' => $_SERVER["REMOTE_ADDR"]));
-                        DB::table('adminsettings')->where('id', 1)->update(['adminpassword' => Hash::make($request->input('password')."(8wgwWoRld136=")]);
+                        DB::table('adminsettings')->where('id', 1)->update(['adminpassword' => Hash::make($request->input('password') . LoginController::Pepper)]);
                         return redirect::to('/adminSettings')->with('success', 'Adminpasswort erfolgreich geändert!');
                     }
                     return Redirect::back()->with('error', 'Ungültiges Adminpasswort!');
@@ -801,7 +802,7 @@ class AdminController extends Controller
                         DB::table('userlog')->insert(array('userid' => $user->id, 'action' => 'Passwort administrativ resettet!', 'timestamp' => time()));
                         $logtext = Auth::user()->name . " hat für " . FunctionsController::getUserName($user->id) . " ein neues Passwort generiert!";
                         DB::table('adminlogs')->insert(array('loglabel' => "ucplog", 'text' => $logtext, 'timestamp' => time(), 'ip' => $_SERVER["REMOTE_ADDR"]));
-                        DB::table('users')->where('id', $user->id)->update(['password' => Hash::make($newpassword."(8wgwWoRld136=")]);
+                        DB::table('users')->where('id', $user->id)->update(['password' => Hash::make($newpassword . LoginController::Pepper)]);
                         return Redirect::back()->with('success', 'Neues Passwort erfolgreich generiert: ' . $newpassword);
                     } else {
                         return Redirect::back()->with('error', 'Keine Berechtigung!');
@@ -1561,7 +1562,7 @@ class AdminController extends Controller
                     if (!empty($request->input('adminpassword')) && strlen($request->input('adminpassword')) >= 6 && strlen($request->input('adminpassword')) <= 35) {
                         //if (Auth::user()->google2fa_secret == null) return Redirect::back()->with('error', 'Du musst zuerst die Zwei-Faktor-Authentisierung aktivieren!');
                         $adminpassword = DB::table('adminsettings')->where('id', 1)->value('adminpassword');
-                        if ($adminpassword && Hash::check($request->input('adminpassword')."(8wgwWoRld136=", $adminpassword)) {
+                        if ($adminpassword && Hash::check($request->input('adminpassword') . LoginController::Pepper, $adminpassword)) {
                             $logtext = Auth::user()->name . " hat sich erfolgreich ins UCP als " . FunctionsController::getAdminRangName(Auth::user()->adminlevel, Auth::user()->id) . " eingeloggt!";
                             DB::table('adminlogs')->insert(array('loglabel' => "ucplog", 'text' => $logtext, 'timestamp' => time(), 'ip' => $_SERVER["REMOTE_ADDR"]));
                             session(['nemesusworlducp_adminlogin' => Hash::make('tWL<Z,(Us45mVZ,Ef{Lm$PbS:')]);

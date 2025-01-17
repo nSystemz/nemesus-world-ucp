@@ -22,6 +22,8 @@ class LoginController extends Controller
     protected $maxAttempts = 5;
     protected $decayMinutes = 1;
 
+    const Pepper = "(8wgwWoRld136="; //Eigenen Pepper aussuchen (Random String) - muss auch im Servercode geändert werden und das gleiche wie hier sein
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -126,7 +128,7 @@ class LoginController extends Controller
                     DB::table('userlog')->insert(array('userid' =>  $id, 'action' => 'Passwort über Passwort Vergessens Funktion neu generiert!', 'timestamp' => time()));
                     $logtext = $name . " hat sich über die Passwort Vergessens Funktion ein neues Passwort generieren lassen!";
                     DB::table('adminlogs')->insert(array('loglabel' => "ucplog", 'text' => $logtext, 'timestamp' => time(), 'ip' => $_SERVER["REMOTE_ADDR"]));
-                    DB::table('users')->where('id', $id)->update(['password' => Hash::make($newpassword."(8wgwWoRld136=")]);
+                    DB::table('users')->where('id', $id)->update(['password' => Hash::make($newpassword . LoginController::Pepper)]);
                     session()->forget('nemesusworlducp_code');
                     session()->forget('nemesusworlducp_codetime');
                     session()->forget('nemesusworlducp_codeid');
@@ -156,7 +158,7 @@ class LoginController extends Controller
         }
 
         if (!empty($request->input('name')) && strlen($request->input('name')) > 2 && strlen($request->input('name')) <= 35 && !empty($request->input('password')) && strlen($request->input('password')) >= 6 && strlen($request->input('password')) <= 35) {
-            if (Auth::attempt(['name' => $name, 'password' => $password."(8wgwWoRld136=", 'dsgvo_closed' => 0], true)) {
+            if (Auth::attempt(['name' => $name, 'password' => $password . LoginController::Pepper, 'dsgvo_closed' => 0], true)) {
                 $checkban = DB::table('bans')->where('banname', Auth::user()->name)->orWhere('identifier', Auth::user()->identifier)->first();
                 $characters = DB::table('characters')->where('closed', 0)->where('userid', Auth::user()->id)->count();
                 if(!$characters)
