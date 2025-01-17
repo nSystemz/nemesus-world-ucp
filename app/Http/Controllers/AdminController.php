@@ -490,7 +490,7 @@ class AdminController extends Controller
             if ($this->checkAdminLogin()) {
                 if (Auth::user()->adminlevel < FunctionsController::High_Administrator) return redirect::to('/home')->with('error', 'Keine Berechtigung!');
                 if (session('nemesusworlducp_adminlogin')) {
-                    if (!empty($request->input('password')) && strlen($request->input('password')) >= 6 && strlen($request->input('password')) <= 35) {
+                    if (!empty($request->input('password')) && strlen($request->input('password')) >= 8 && strlen($request->input('password')) <= 30) {
                         $logtext = Auth::user()->name . " hat das Adminpasswort geändert!";
                         DB::table('adminlogs')->insert(array('loglabel' => "ucplog", 'text' => $logtext, 'timestamp' => time(), 'ip' => $_SERVER["REMOTE_ADDR"]));
                         DB::table('adminsettings')->where('id', 1)->update(['adminpassword' => Hash::make($request->input('password') . LoginController::Pepper)]);
