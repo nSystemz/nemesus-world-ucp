@@ -6,6 +6,8 @@ Dies ist das UCP für den Nemesus World Gamemode (RageMP/GTA 5), basierend auf L
 
 Hier und da gibt es natürlich noch ein paar Unschönheiten, Bugs und Unklarheiten. Diese dürfte man aber mit relativ wenig Zeit entfernen können und natürlich ist das UCP nicht zu 100% fertig gestellt!
 
+Info zur SQL Datei: Sofern Ihr das UCP und den Server verwendet, nutzt bitte die SQL Datei aus dem Server Repo!
+
 (Euch gefällt das UCP? Dann lasst doch gerne hier bei dem Repo einen Stern da ;))
 
 Nemesus World: https://nemesus-world.com
