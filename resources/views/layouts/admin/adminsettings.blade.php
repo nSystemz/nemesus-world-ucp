@@ -48,7 +48,7 @@ use App\Http\Controllers\FunctionsController as FunctionsController;
                             <form class="form-horizontal" method="POST" action="{{ route('adminChangePassword') }}">
                                 @csrf
                                 <div class="form-group row">
-                                    <label for="inputName">Neues Adminpasswort</label>
+                                    <label for="inputName">Neues Adminpasswort (Der Gameserver muss offline sein!)</label>
                                     <div class="input-group input-group">
                                         <input type="password" class="form-control" placeholder="Neues Adminpasswort"
                                             id="password" name="password" maxlength="35" autocomplete="off">
