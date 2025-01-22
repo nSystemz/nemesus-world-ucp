@@ -890,7 +890,7 @@ class AdminController extends Controller
                                 if (Auth::user()->adminlevel < FunctionsController::High_Administrator && strval($request->input('checkpoints')) > 1000) return Redirect::back()->with('error', 'Du kannst den Spieler für max. 1000 Checkpoints in Prison stecken');
                                 if (Auth::user()->adminlevel < FunctionsController::Manager && strval($request->input('checkpoints')) > 5000) return Redirect::back()->with('error', 'Du kannst den Spieler für max. 5000 Checkpoints in Prison stecken');
                                 if (Auth::user()->adminlevel < FunctionsController::Projektleiter && strval($request->input('checkpoints')) > 999999) return Redirect::back()->with('error', 'Du kannst den Spieler für max. 999999 Checkpoints in Prison stecken');
-                                DB::table('userfile')->insert(array('userid' => $user->id, 'admin' => FunctionsController::getUserName($user->id), 'text' => $request->input('grund'), 'penalty' => $request->input('checkpoints') . ' Checkpoints', 'timestamp' => time()));
+                                DB::table('userfile')->insert(array('userid' => $user->id, 'admin' => FunctionsController::getUserName(Auth::user()->id), 'text' => $request->input('grund'), 'penalty' => $request->input('checkpoints') . ' Checkpoints', 'timestamp' => time()));
                                 $logtext = Auth::user()->name . " hat " . FunctionsController::getUserName($user->id) . " für " . $request->input('checkpoints') . " Checkpoints, Grund: " . $request->input('grund') . " ins Prison gesteckt!";
                                 DB::table('adminlogs')->insert(array('loglabel' => "ucplog", 'text' => $logtext, 'timestamp' => time(), 'ip' => $_SERVER["REMOTE_ADDR"]));
                                 $punishments = DB::table('adminsettings')->where('id', 1)->value('punishments');
@@ -943,9 +943,9 @@ class AdminController extends Controller
                                     $time = time() + (60 * $request->input('zeit'));
                                 }
                                 if ($request->input('zeit') > -1) {
-                                    DB::table('userfile')->insert(array('userid' => $user->id, 'admin' => FunctionsController::getUserName($user->id), 'text' => $request->input('grund'), 'penalty' => $request->input('zeit') . ' Minuten Timeban', 'timestamp' => time()));
+                                    DB::table('userfile')->insert(array('userid' => $user->id, 'admin' => FunctionsController::getUserName(Auth::user()->id), 'text' => $request->input('grund'), 'penalty' => $request->input('zeit') . ' Minuten Timeban', 'timestamp' => time()));
                                 } else {
-                                    DB::table('userfile')->insert(array('userid' => $user->id, 'admin' => FunctionsController::getUserName($user->id), 'text' => $request->input('grund'), 'penalty' => 'Permanenter Ban', 'timestamp' => time()));
+                                    DB::table('userfile')->insert(array('userid' => $user->id, 'admin' => FunctionsController::getUserName(Auth::user()->id), 'text' => $request->input('grund'), 'penalty' => 'Permanenter Ban', 'timestamp' => time()));
                                 }
                                 $punishments = DB::table('adminsettings')->where('id', 1)->value('punishments');
                                 DB::table('adminsettings')->where('id', 1)->update(['punishments' => $punishments + 1]);
