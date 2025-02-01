@@ -156,7 +156,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                                 @elseif($licenses[0] > 1)
                                                 <i class="fas fa-credit-card" style="color:b4dd20;font-size: 16px"
                                                     data-toggle="tooltip" data-placement="top"
-                                                    title="Führerschein (Sperre bis: {{strftime( '%d %b. %Y - %H:%M:%S',$licenses[0])}})"></i>
+                                                    title="Führerschein (Sperre bis: {{(time() > $licenses[0]) ? "Abgelaufen" : strftime('%d %b. %Y - %H:%M:%S', $licenses[0])}})"></i>
                                                 </strong>
                                                 @else
                                                 <i class="fas fa-car" style="color:red;font-size: 16px"
@@ -172,7 +172,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                                 @elseif($licenses[1] > 1)
                                                 <i class="fas fa-credit-card" style="color:b4dd20;font-size: 16px"
                                                     data-toggle="tooltip" data-placement="top"
-                                                    title="Mottoradschein (Sperre bis: {{strftime( '%d %b. %Y - %H:%M:%S',$licenses[1])}})"></i>
+                                                    title="Mottoradschein (Sperre bis: {{(time() > $licenses[1]) ? "Abgelaufen" : strftime('%d %b. %Y - %H:%M:%S', $licenses[1])}})"></i>
                                                 </strong>
                                                 @else
                                                 <i class="fas fa-motorcycle" style="color:red;font-size: 16px"
@@ -189,7 +189,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                                 @elseif($licenses[2] > 3)
                                                 <i class="fas fa-truck" style="color:#b4dd20;font-size: 15px"
                                                     data-toggle="tooltip" data-placement="top"
-                                                    title="Truckerschein (Sperre bis: {{strftime( '%d %b. %Y - %H:%M:%S',$licenses[2])}})"></i>
+                                                    title="Truckerschein (Sperre bis: {{strftime(time() > $licenses[2]) ? "Abgelaufen" : strftime('%d %b. %Y - %H:%M:%S', $licenses[2])}})"></i>
                                                 </strong>
                                                 @else
                                                 <i class="fas fa-truck" style="color:red;font-size: 15px"
@@ -206,7 +206,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                                 @elseif($licenses[3] > 1)
                                                 <i class="fas fa-credit-card" style="color:b4dd20;font-size: 15px"
                                                     data-toggle="tooltip" data-placement="top"
-                                                    title="Bootsschein (Sperre bis: {{strftime( '%d %b. %Y - %H:%M:%S',$licenses[3])}})"></i>
+                                                    title="Bootsschein (Sperre bis: {{(time() > $licenses[3]) ? "Abgelaufen" : strftime('%d %b. %Y - %H:%M:%S', $licenses[3])}})"></i>
                                                 </strong>
                                                 @else
                                                 <i class="fas fa-ship" style="color:red;font-size: 15px"
@@ -222,7 +222,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                                 @elseif($licenses[4] > 1)
                                                 <i class="fas fa-credit-card" style="color:b4dd20;font-size: 15px"
                                                     data-toggle="tooltip" data-placement="top"
-                                                    title="Flugschein (Sperre bis: {{strftime( '%d %b. %Y - %H:%M:%S',$licenses[4])}})"></i>
+                                                    title="Flugschein (Sperre bis: {{(time() > $licenses[4]) ? "Abgelaufen" : strftime('%d %b. %Y - %H:%M:%S', $licenses[4])}})"></i>
                                                 </strong>
                                                 @else
                                                 <i class="fas fa-plane" style="color:red;font-size: 15px"
@@ -238,7 +238,7 @@ setlocale (LC_ALL, 'de_DE@euro', 'de_DE', 'de', 'ge');
                                                 @elseif($licenses[5] > 3)
                                                 <i class="fas fa-credit-card" style="color:#b4dd20;font-size: 15px"
                                                     data-toggle="tooltip" data-placement="top"
-                                                    title="Waffenschein (Sperre bis: {{strftime( '%d %b. %Y - %H:%M:%S',$licenses[5])}})"></i>
+                                                    title="Waffenschein (Sperre bis: {{strftime(time() > $licenses[5]) ? "Abgelaufen" : strftime('%d %b. %Y - %H:%M:%S', $licenses[5])}})"></i>
                                                 </strong>
                                                 @else
                                                 <i class="fas fa-credit-card" style="color:red;font-size: 15px"
