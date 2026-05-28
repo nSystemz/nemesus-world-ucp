@@ -1,5 +1,7 @@
 🌐 Nemesus World UCP (User Control Panel) für RageMP (GTA 5) 🌐
 
+Info: Dieser Repo ist EOL, das RageMP Projekt wurde beendet!
+
 Dies ist das UCP für den Nemesus World Gamemode (RageMP/GTA 5), basierend auf Laravel / PHP 8
 
 **Auf der Suche nach einem günstigen Plesk Webspace? ZAP-Hosting: https://bit.ly/3OXqYb9 und mit dem Gutschein: Nsus-a-3805 noch kräftig sparen! (Werbung)**
